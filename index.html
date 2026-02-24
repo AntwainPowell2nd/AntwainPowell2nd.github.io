@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antwain Powell — Software Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #07071a;
+    --surface:   #0d0d2b;
+    --card:      #11113a;
+    --border:    #1e1e5c;
+    --blue:      #4f8ef7;
+    --blue-light:#7ab0ff;
+    --purple:    #9b6dff;
+    --purple-light:#c4a0ff;
+    --gradient:  linear-gradient(135deg, #4f8ef7, #9b6dff);
+    --text:      #e8eaff;
+    --muted:     #8888bb;
+    --faint:     #3a3a70;
+  }
+
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 10% 0%, rgba(79,142,247,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 90% 100%, rgba(155,109,255,0.10) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background-image: repeating-linear-gradient(
+      transparent, transparent 79px, rgba(79,142,247,0.04) 80px
+    );
+    pointer-events: none;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.1rem 5%;
+    background: rgba(7,7,26,0.82);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 900;
+    background: var(--gradient);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue-light); }
+
+  /* HERO */
+  .hero {
+    position: relative; z-index: 1;
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 7rem 5% 5rem;
+  }
+
+  .hero-inner { max-width: 780px; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--border); border-radius: 100px;
+    font-size: 0.73rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--blue-light);
+    background: rgba(79,142,247,0.07);
+    margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp 0.5s ease forwards 0.1s;
+  }
+
+  .hero-badge::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--blue); box-shadow: 0 0 8px var(--blue);
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.2rem, 8vw, 6.5rem);
+    font-weight: 900; line-height: 1;
+    letter-spacing: -0.02em; margin-bottom: 1.25rem;
+    opacity: 0; animation: fadeUp 0.6s ease forwards 0.3s;
+  }
+
+  .hero-name em {
+    font-style: normal;
+    background: var(--gradient);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-title {
+    font-size: 1rem; font-weight: 400;
+    color: var(--muted); margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp 0.6s ease forwards 0.45s;
+  }
+  .hero-title strong { color: var(--purple-light); font-weight: 600; }
+
+  .hero-desc {
+    font-size: 1rem; color: var(--muted);
+    max-width: 520px; margin-bottom: 2.5rem; line-height: 1.75;
+    opacity: 0; animation: fadeUp 0.6s ease forwards 0.55s;
+  }
+
+  .hero-cta {
+    display: flex; flex-wrap: wrap; gap: 0.85rem;
+    opacity: 0; animation: fadeUp 0.6s ease forwards 0.7s;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.7rem 1.6rem;
+    background: var(--gradient); border-radius: 8px;
+    font-size: 0.85rem; font-weight: 600;
+    color: #fff; text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+    box-shadow: 0 4px 24px rgba(155,109,255,0.25);
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.7rem 1.4rem;
+    border: 1px solid var(--border); border-radius: 8px;
+    font-size: 0.85rem; font-weight: 500;
+    color: var(--muted); text-decoration: none;
+    background: transparent; transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--purple); color: var(--purple-light); transform: translateY(-2px); }
+
+  /* DIVIDER */
+  .divider {
+    position: relative; z-index: 1;
+    width: 90%; max-width: 1100px; margin: 0 auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+
+  /* SECTIONS */
+  section {
+    position: relative; z-index: 1;
+    padding: 6rem 5%; max-width: 1100px; margin: 0 auto;
+  }
+
+  .section-header { margin-bottom: 3rem; }
+
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--purple-light); margin-bottom: 0.6rem;
+  }
+  .section-eyebrow::before {
+    content: ''; display: inline-block;
+    width: 20px; height: 2px;
+    background: var(--gradient); border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 900; letter-spacing: -0.02em; color: var(--text);
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .skill-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.75rem;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+  .skill-card:hover {
+    border-color: var(--purple); transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(155,109,255,0.12);
+  }
+
+  .skill-card-icon { font-size: 1.4rem; margin-bottom: 0.75rem; }
+
+  .skill-card h4 {
+    font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--blue-light); margin-bottom: 1rem;
+  }
+
+  .tag-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+  .tag {
+    padding: 0.25rem 0.65rem; border-radius: 6px;
+    font-size: 0.75rem; font-weight: 500;
+    background: rgba(79,142,247,0.08);
+    border: 1px solid rgba(79,142,247,0.2); color: var(--text);
+  }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 1.75rem; }
+
+  .exp-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 2rem;
+    position: relative; overflow: hidden;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .exp-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: var(--gradient); border-radius: 3px 0 0 3px;
+    transform: scaleY(0); transition: transform 0.3s ease; transform-origin: top;
+  }
+  .exp-card:hover { border-color: var(--blue); box-shadow: 0 8px 32px rgba(79,142,247,0.1); }
+  .exp-card:hover::before { transform: scaleY(1); }
+
+  .exp-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem;
+  }
+
+  .exp-org {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700; color: var(--text);
+  }
+  .exp-role { font-size: 0.82rem; font-weight: 500; color: var(--purple-light); margin-top: 0.15rem; }
+
+  .exp-period {
+    font-size: 0.75rem; font-weight: 600; color: var(--blue-light);
+    background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.2);
+    padding: 0.25rem 0.75rem; border-radius: 100px; white-space: nowrap;
+  }
+
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+  .exp-bullets li {
+    font-size: 0.85rem; color: var(--muted);
+    padding-left: 1.25rem; position: relative; line-height: 1.6;
+  }
+  .exp-bullets li::before {
+    content: '▸'; position: absolute; left: 0;
+    color: var(--purple); font-size: 0.7rem; top: 0.2rem;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.75rem;
+    display: flex; flex-direction: column;
+    transition: all 0.25s; position: relative; overflow: hidden;
+  }
+  .project-card::after {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--gradient); opacity: 0; transition: opacity 0.3s;
+  }
+  .project-card:hover {
+    border-color: var(--purple); transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(155,109,255,0.14);
+  }
+  .project-card:hover::after { opacity: 1; }
+
+  .project-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 0.5rem;
+  }
+  .project-emoji { font-size: 1.6rem; }
+  .project-label {
+    font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--blue-light);
+    background: rgba(79,142,247,0.08); border: 1px solid rgba(79,142,247,0.18);
+    padding: 0.2rem 0.55rem; border-radius: 100px;
+  }
+
+  .project-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.6rem;
+  }
+  .project-desc {
+    font-size: 0.82rem; color: var(--muted); line-height: 1.65;
+    flex: 1; margin-bottom: 1.25rem;
+  }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .project-tag {
+    font-size: 0.7rem; font-weight: 500;
+    padding: 0.2rem 0.55rem; border-radius: 6px;
+    background: rgba(155,109,255,0.08); border: 1px solid rgba(155,109,255,0.2);
+    color: var(--purple-light);
+  }
+
+  /* EDUCATION */
+  .edu-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 2.5rem;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 2rem; align-items: start;
+    transition: border-color 0.25s;
+  }
+  .edu-card:hover { border-color: var(--blue); }
+
+  .edu-school {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 900; color: var(--text); margin-bottom: 0.3rem;
+  }
+  .edu-degree {
+    font-size: 0.88rem; color: var(--purple-light);
+    font-weight: 500; margin-bottom: 0.75rem;
+  }
+  .edu-graduation { font-size: 0.8rem; color: var(--muted); margin-bottom: 1.25rem; }
+
+  .edu-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.25rem; }
+  .edu-badge {
+    font-size: 0.73rem; font-weight: 600;
+    padding: 0.3rem 0.85rem; border-radius: 100px;
+    background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.25);
+    color: var(--blue-light);
+  }
+
+  .edu-courses { font-size: 0.8rem; color: var(--muted); }
+  .edu-courses strong { color: var(--text); font-weight: 500; }
+
+  .gpa-block { text-align: center; }
+  .gpa-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem; font-weight: 900;
+    background: var(--gradient);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; line-height: 1;
+  }
+  .gpa-label {
+    font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-top: 0.3rem;
+  }
+
+  /* CONTACT STRIP */
+  .contact-strip {
+    position: relative; z-index: 1;
+    background: var(--card);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 3.5rem 5%;
+    display: flex; flex-wrap: wrap;
+    justify-content: center; align-items: center; gap: 1rem;
+  }
+
+  .contact-item {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.6rem 1.4rem;
+    border: 1px solid var(--border); border-radius: 100px;
+    font-size: 0.82rem; font-weight: 500;
+    color: var(--muted); text-decoration: none;
+    background: var(--surface); transition: all 0.2s;
+  }
+  .contact-item:hover {
+    border-color: var(--blue); color: var(--blue-light);
+    transform: translateY(-2px); box-shadow: 0 6px 20px rgba(79,142,247,0.12);
+  }
+  .contact-item svg { width: 14px; height: 14px; fill: currentColor; opacity: 0.7; }
+
+  /* FOOTER */
+  footer {
+    position: relative; z-index: 1;
+    text-align: center; padding: 2.5rem;
+    color: var(--faint); font-size: 0.75rem;
+  }
+  footer span {
+    background: var(--gradient);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; font-weight: 600;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(18px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 5%; }
+    .nav-links { display: none; }
+    .edu-card { grid-template-columns: 1fr; }
+    .gpa-block { text-align: left; }
+    .hero-name { font-size: 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Antwain Powell</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Computer Science · NC A&amp;T State University</div>
+    <h1 class="hero-name">Antwain<br><em>Powell</em></h1>
+    <p class="hero-title">Software Engineer &amp; <strong>Problem Solver</strong></p>
+    <p class="hero-desc">
+      Junior CS student with hands-on internship experience at Microsoft, hackathon team leadership, and a portfolio of real-world projects spanning encryption, AI, and web development.
+    </p>
+    <div class="hero-cta">
+      <a href="https://github.com/AntwainPowell2nd" target="_blank" class="btn-primary">View My Work</a>
+      <a href="https://www.linkedin.com/in/antwain-powell-jr-01a87a396/" target="_blank" class="btn-ghost">Get In Touch</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<section id="skills">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">What I Work With</div>
+    <h2 class="section-title">Technical Skills</h2>
+  </div>
+  <div class="skills-grid reveal">
+    <div class="skill-card">
+      <div class="skill-card-icon">💻</div>
+      <h4>Languages</h4>
+      <div class="tag-group">
+        <span class="tag">Python</span>
+        <span class="tag">Java</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🔧</div>
+      <h4>Tools &amp; Platforms</h4>
+      <div class="tag-group">
+        <span class="tag">Git</span>
+        <span class="tag">GitHub</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">⚡</div>
+      <h4>Core Concepts</h4>
+      <div class="tag-group">
+        <span class="tag">Web Development</span>
+        <span class="tag">API Integration</span>
+        <span class="tag">Encryption</span>
+        <span class="tag">OOP</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="experience">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Work History</div>
+    <h2 class="section-title">Experience</h2>
+  </div>
+  <div class="exp-list">
+
+    <div class="exp-card reveal">
+      <div class="exp-header">
+        <div>
+          <div class="exp-org">Microsoft — BAM (Black at Microsoft)</div>
+          <div class="exp-role">Software Engineering Intern · Raleigh, NC</div>
+        </div>
+        <span class="exp-period">Jul – Aug 2024</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Participated in 4+ mock technical interview rounds, sharpening problem-solving and professional communication under real-world conditions.</li>
+        <li>Visited one leading tech campus per week across North Carolina — including Google and NetApp — gaining firsthand industry exposure and building a professional network.</li>
+        <li>Strengthened Python skills through hands-on GitHub-based projects while exploring career paths in software engineering, AI, and product development.</li>
+        <li>Delivered technical group presentations to audiences of 50+ attendees, developing confident public speaking skills.</li>
+      </ul>
+    </div>
+
+    <div class="exp-card reveal">
+      <div class="exp-header">
+        <div>
+          <div class="exp-org">BAM Summer Internship — Hackathon</div>
+          <div class="exp-role">Team Lead</div>
+        </div>
+        <span class="exp-period">Jul – Aug 2024</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Led a 4-person team through sprint planning, task delegation, and full project delivery from ideation to final presentation.</li>
+        <li>Designed and prototyped a generative AI-powered hospital robotic delivery system, addressing $12B+ in annual U.S. labor and operational waste.</li>
+        <li>Set a measurable goal of reducing first-year nurse attrition by 20%, directly targeting the 75% turnover rate — a critical U.S. healthcare workforce challenge.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="projects">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">What I've Built</div>
+    <h2 class="section-title">Projects</h2>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div class="project-emoji">🔐</div>
+        <span class="project-label">Hackathon</span>
+      </div>
+      <div class="project-name">3-Site Encryption Suite</div>
+      <p class="project-desc">Built a full encryption workflow: a message encryption portal, decryption portal, and audit log — all communicating via a simulated real-time chat interface. Integrated external APIs for encrypted data transmission with complete activity logging.</p>
+      <div class="project-tags">
+        <span class="project-tag">JavaScript</span>
+        <span class="project-tag">API Integration</span>
+        <span class="project-tag">Cryptography</span>
+        <span class="project-tag">HTML/CSS</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div class="project-emoji">⚔️</div>
+        <span class="project-label">School Project</span>
+      </div>
+      <div class="project-name">Turn-Based RPG Engine</div>
+      <p class="project-desc">Architected a scalable character schema with persistent storage and real-time stat updates across multiple game states. Built a full combat logic engine with attack calculations, specialty ability triggers, and a modular OOP design.</p>
+      <div class="project-tags">
+        <span class="project-tag">Java</span>
+        <span class="project-tag">OOP</span>
+        <span class="project-tag">Data Structures</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div class="project-emoji">🤖</div>
+        <span class="project-label">Hackathon</span>
+      </div>
+      <div class="project-name">AI Hospital Delivery System</div>
+      <p class="project-desc">Prototyped a generative AI-powered robotic hospital delivery system targeting $12B+ in annual U.S. operational waste, with a measurable goal of reducing first-year nurse attrition by 20%.</p>
+      <div class="project-tags">
+        <span class="project-tag">Generative AI</span>
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Systems Design</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div class="project-emoji">🛒</div>
+        <span class="project-label">Personal Project</span>
+      </div>
+      <div class="project-name">Amazon.com Clone</div>
+      <p class="project-desc">Faithfully recreated the full layout, navigation structure, and visual design of Amazon's large-scale e-commerce platform using pure HTML and CSS, demonstrating strong front-end fundamentals.</p>
+      <div class="project-tags">
+        <span class="project-tag">HTML</span>
+        <span class="project-tag">CSS</span>
+        <span class="project-tag">UI Design</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div class="project-emoji">🎮</div>
+        <span class="project-label">Personal Project</span>
+      </div>
+      <div class="project-name">Calculator &amp; Rock Paper Scissors</div>
+      <p class="project-desc">Built a polished interactive calculator and a Rock Paper Scissors game, applying core programming logic and UI design principles to deliver clean, engaging browser-based experiences.</p>
+      <div class="project-tags">
+        <span class="project-tag">JavaScript</span>
+        <span class="project-tag">HTML</span>
+        <span class="project-tag">CSS</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="education">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Academic Background</div>
+    <h2 class="section-title">Education</h2>
+  </div>
+  <div class="edu-card reveal">
+    <div>
+      <div class="edu-school">NC A&amp;T State University</div>
+      <div class="edu-degree">Bachelor of Science — Computer Science</div>
+      <div class="edu-graduation">Greensboro, NC · Expected May 2029</div>
+      <div class="edu-badges">
+        <span class="edu-badge">Aggie Merit Scholar</span>
+      </div>
+      <div class="edu-courses">
+        <strong>Relevant Coursework:</strong> Calculus I &amp; II · Discrete Structures · Computer Program Design
+      </div>
+    </div>
+    <div class="gpa-block">
+      <div class="gpa-num">3.38</div>
+      <div class="gpa-label">GPA</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<div class="contact-strip" id="contact">
+  <a href="/cdn-cgi/l/email-protection#01606f757660686f2f716e76646d6d2f336f6541666c60686d2f626e6c" class="contact-item">
+    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+    <span class="__cf_email__" data-cfemail="1f7e716b687e7671316f70687a7373312d717b5f78727e7673317c7072">[email&#160;protected]</span>
+  </a>
+  <a href="tel:9842024886" class="contact-item">
+    <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+    (984) 202-4886
+  </a>
+  <a href="https://www.linkedin.com/in/antwain-powell-jr-01a87a396/" target="_blank" class="contact-item">
+    <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+    LinkedIn
+  </a>
+  <a href="https://github.com/AntwainPowell2nd" target="_blank" class="contact-item">
+    <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+    GitHub
+  </a>
+</div>
+
+<footer>
+  <span>Antwain Powell</span> · Computer Science @ NC A&amp;T · Class of 2029
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const observer = new IntersectionO
