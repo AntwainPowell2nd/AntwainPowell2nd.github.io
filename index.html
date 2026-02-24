@@ -3,25 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Antwain Powell — Software Engineer</title>
+<title>Antwain Powell - Software Engineer</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:        #07071a;
-    --surface:   #0d0d2b;
-    --card:      #11113a;
-    --border:    #1e1e5c;
-    --blue:      #4f8ef7;
-    --blue-light:#7ab0ff;
-    --purple:    #9b6dff;
-    --purple-light:#c4a0ff;
-    --gradient:  linear-gradient(135deg, #4f8ef7, #9b6dff);
-    --text:      #e8eaff;
-    --muted:     #8888bb;
-    --faint:     #3a3a70;
+    --bg:           #07071a;
+    --surface:      #0d0d2b;
+    --card:         #11113a;
+    --border:       #1e1e5c;
+    --blue:         #4f8ef7;
+    --blue-light:   #7ab0ff;
+    --purple:       #9b6dff;
+    --purple-light: #c4a0ff;
+    --gradient:     linear-gradient(135deg, #4f8ef7, #9b6dff);
+    --text:         #e8eaff;
+    --muted:        #8888bb;
+    --faint:        #3a3a70;
   }
 
-  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
   body {
@@ -44,9 +44,7 @@
   body::after {
     content: '';
     position: fixed; inset: 0; z-index: 0;
-    background-image: repeating-linear-gradient(
-      transparent, transparent 79px, rgba(79,142,247,0.04) 80px
-    );
+    background-image: repeating-linear-gradient(transparent, transparent 79px, rgba(79,142,247,0.04) 80px);
     pointer-events: none;
   }
 
@@ -64,7 +62,8 @@
     font-family: 'Playfair Display', serif;
     font-size: 1.2rem; font-weight: 900;
     background: var(--gradient);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
@@ -114,7 +113,8 @@
   .hero-name em {
     font-style: normal;
     background: var(--gradient);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
@@ -237,7 +237,8 @@
   .exp-card::before {
     content: '';
     position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-    background: var(--gradient); border-radius: 3px 0 0 3px;
+    background: var(--gradient);
+    border-radius: 3px 0 0 3px;
     transform: scaleY(0); transition: transform 0.3s ease; transform-origin: top;
   }
   .exp-card:hover { border-color: var(--blue); box-shadow: 0 8px 32px rgba(79,142,247,0.1); }
@@ -266,7 +267,7 @@
     padding-left: 1.25rem; position: relative; line-height: 1.6;
   }
   .exp-bullets li::before {
-    content: '▸'; position: absolute; left: 0;
+    content: '\25B8'; position: absolute; left: 0;
     color: var(--purple); font-size: 0.7rem; top: 0.2rem;
   }
 
@@ -337,10 +338,7 @@
     font-family: 'Playfair Display', serif;
     font-size: 1.6rem; font-weight: 900; color: var(--text); margin-bottom: 0.3rem;
   }
-  .edu-degree {
-    font-size: 0.88rem; color: var(--purple-light);
-    font-weight: 500; margin-bottom: 0.75rem;
-  }
+  .edu-degree { font-size: 0.88rem; color: var(--purple-light); font-weight: 500; margin-bottom: 0.75rem; }
   .edu-graduation { font-size: 0.8rem; color: var(--muted); margin-bottom: 1.25rem; }
 
   .edu-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.25rem; }
@@ -359,7 +357,8 @@
     font-family: 'Playfair Display', serif;
     font-size: 3.5rem; font-weight: 900;
     background: var(--gradient);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     background-clip: text; line-height: 1;
   }
   .gpa-label {
@@ -400,7 +399,8 @@
   }
   footer span {
     background: var(--gradient);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     background-clip: text; font-weight: 600;
   }
 
@@ -427,6 +427,7 @@
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <div class="nav-logo">Antwain Powell</div>
   <ul class="nav-links">
@@ -438,9 +439,10 @@
   </ul>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-badge">Computer Science · NC A&amp;T State University</div>
+    <div class="hero-badge">Computer Science · NC A&T State University</div>
     <h1 class="hero-name">Antwain<br><em>Powell</em></h1>
     <p class="hero-title">Software Engineer &amp; <strong>Problem Solver</strong></p>
     <p class="hero-desc">
@@ -455,6 +457,7 @@
 
 <div class="divider"></div>
 
+<!-- SKILLS -->
 <section id="skills">
   <div class="section-header reveal">
     <div class="section-eyebrow">What I Work With</div>
@@ -462,7 +465,7 @@
   </div>
   <div class="skills-grid reveal">
     <div class="skill-card">
-      <div class="skill-card-icon">💻</div>
+      <div class="skill-card-icon">&#128187;</div>
       <h4>Languages</h4>
       <div class="tag-group">
         <span class="tag">Python</span>
@@ -473,7 +476,7 @@
       </div>
     </div>
     <div class="skill-card">
-      <div class="skill-card-icon">🔧</div>
+      <div class="skill-card-icon">&#128295;</div>
       <h4>Tools &amp; Platforms</h4>
       <div class="tag-group">
         <span class="tag">Git</span>
@@ -481,7 +484,7 @@
       </div>
     </div>
     <div class="skill-card">
-      <div class="skill-card-icon">⚡</div>
+      <div class="skill-card-icon">&#9889;</div>
       <h4>Core Concepts</h4>
       <div class="tag-group">
         <span class="tag">Web Development</span>
@@ -495,6 +498,7 @@
 
 <div class="divider"></div>
 
+<!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-header reveal">
     <div class="section-eyebrow">Work History</div>
@@ -505,14 +509,14 @@
     <div class="exp-card reveal">
       <div class="exp-header">
         <div>
-          <div class="exp-org">Microsoft — BAM (Black at Microsoft)</div>
-          <div class="exp-role">Software Engineering Intern · Raleigh, NC</div>
+          <div class="exp-org">Microsoft &mdash; BAM (Black at Microsoft)</div>
+          <div class="exp-role">Software Engineering Intern &middot; Raleigh, NC</div>
         </div>
-        <span class="exp-period">Jul – Aug 2024</span>
+        <span class="exp-period">Jul &ndash; Aug 2024</span>
       </div>
       <ul class="exp-bullets">
         <li>Participated in 4+ mock technical interview rounds, sharpening problem-solving and professional communication under real-world conditions.</li>
-        <li>Visited one leading tech campus per week across North Carolina — including Google and NetApp — gaining firsthand industry exposure and building a professional network.</li>
+        <li>Visited one leading tech campus per week across North Carolina &mdash; including Google and NetApp &mdash; gaining firsthand industry exposure and building a professional network.</li>
         <li>Strengthened Python skills through hands-on GitHub-based projects while exploring career paths in software engineering, AI, and product development.</li>
         <li>Delivered technical group presentations to audiences of 50+ attendees, developing confident public speaking skills.</li>
       </ul>
@@ -521,15 +525,15 @@
     <div class="exp-card reveal">
       <div class="exp-header">
         <div>
-          <div class="exp-org">BAM Summer Internship — Hackathon</div>
+          <div class="exp-org">BAM Summer Internship &mdash; Hackathon</div>
           <div class="exp-role">Team Lead</div>
         </div>
-        <span class="exp-period">Jul – Aug 2024</span>
+        <span class="exp-period">Jul &ndash; Aug 2024</span>
       </div>
       <ul class="exp-bullets">
         <li>Led a 4-person team through sprint planning, task delegation, and full project delivery from ideation to final presentation.</li>
         <li>Designed and prototyped a generative AI-powered hospital robotic delivery system, addressing $12B+ in annual U.S. labor and operational waste.</li>
-        <li>Set a measurable goal of reducing first-year nurse attrition by 20%, directly targeting the 75% turnover rate — a critical U.S. healthcare workforce challenge.</li>
+        <li>Set a measurable goal of reducing first-year nurse attrition by 20%, directly targeting the 75% turnover rate &mdash; a critical U.S. healthcare workforce challenge.</li>
       </ul>
     </div>
 
@@ -538,6 +542,7 @@
 
 <div class="divider"></div>
 
+<!-- PROJECTS -->
 <section id="projects">
   <div class="section-header reveal">
     <div class="section-eyebrow">What I've Built</div>
@@ -547,11 +552,11 @@
 
     <div class="project-card reveal">
       <div class="project-header">
-        <div class="project-emoji">🔐</div>
+        <div class="project-emoji">&#128272;</div>
         <span class="project-label">Hackathon</span>
       </div>
       <div class="project-name">3-Site Encryption Suite</div>
-      <p class="project-desc">Built a full encryption workflow: a message encryption portal, decryption portal, and audit log — all communicating via a simulated real-time chat interface. Integrated external APIs for encrypted data transmission with complete activity logging.</p>
+      <p class="project-desc">Built a full encryption workflow: a message encryption portal, decryption portal, and audit log &mdash; all communicating via a simulated real-time chat interface. Integrated external APIs for encrypted data transmission with complete activity logging.</p>
       <div class="project-tags">
         <span class="project-tag">JavaScript</span>
         <span class="project-tag">API Integration</span>
@@ -562,7 +567,7 @@
 
     <div class="project-card reveal">
       <div class="project-header">
-        <div class="project-emoji">⚔️</div>
+        <div class="project-emoji">&#9876;</div>
         <span class="project-label">School Project</span>
       </div>
       <div class="project-name">Turn-Based RPG Engine</div>
@@ -576,7 +581,7 @@
 
     <div class="project-card reveal">
       <div class="project-header">
-        <div class="project-emoji">🤖</div>
+        <div class="project-emoji">&#129302;</div>
         <span class="project-label">Hackathon</span>
       </div>
       <div class="project-name">AI Hospital Delivery System</div>
@@ -590,7 +595,7 @@
 
     <div class="project-card reveal">
       <div class="project-header">
-        <div class="project-emoji">🛒</div>
+        <div class="project-emoji">&#128722;</div>
         <span class="project-label">Personal Project</span>
       </div>
       <div class="project-name">Amazon.com Clone</div>
@@ -604,7 +609,7 @@
 
     <div class="project-card reveal">
       <div class="project-header">
-        <div class="project-emoji">🎮</div>
+        <div class="project-emoji">&#127918;</div>
         <span class="project-label">Personal Project</span>
       </div>
       <div class="project-name">Calculator &amp; Rock Paper Scissors</div>
@@ -621,6 +626,7 @@
 
 <div class="divider"></div>
 
+<!-- EDUCATION -->
 <section id="education">
   <div class="section-header reveal">
     <div class="section-eyebrow">Academic Background</div>
@@ -629,13 +635,13 @@
   <div class="edu-card reveal">
     <div>
       <div class="edu-school">NC A&amp;T State University</div>
-      <div class="edu-degree">Bachelor of Science — Computer Science</div>
-      <div class="edu-graduation">Greensboro, NC · Expected May 2029</div>
+      <div class="edu-degree">Bachelor of Science &mdash; Computer Science</div>
+      <div class="edu-graduation">Greensboro, NC &middot; Expected May 2029</div>
       <div class="edu-badges">
         <span class="edu-badge">Aggie Merit Scholar</span>
       </div>
       <div class="edu-courses">
-        <strong>Relevant Coursework:</strong> Calculus I &amp; II · Discrete Structures · Computer Program Design
+        <strong>Relevant Coursework:</strong> Calculus I &amp; II &middot; Discrete Structures &middot; Computer Program Design
       </div>
     </div>
     <div class="gpa-block">
@@ -647,10 +653,11 @@
 
 <div class="divider"></div>
 
+<!-- CONTACT -->
 <div class="contact-strip" id="contact">
-  <a href="/cdn-cgi/l/email-protection#01606f757660686f2f716e76646d6d2f336f6541666c60686d2f626e6c" class="contact-item">
+  <a href="mailto:antwain.powell.2nd@gmail.com" class="contact-item">
     <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-    <span class="__cf_email__" data-cfemail="1f7e716b687e7671316f70687a7373312d717b5f78727e7673317c7072">[email&#160;protected]</span>
+    antwain.powell.2nd@gmail.com
   </a>
   <a href="tel:9842024886" class="contact-item">
     <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
@@ -666,9 +673,21 @@
   </a>
 </div>
 
+<!-- FOOTER -->
 <footer>
-  <span>Antwain Powell</span> · Computer Science @ NC A&amp;T · Class of 2029
+  <span>Antwain Powell</span> &middot; Computer Science @ NC A&amp;T &middot; Class of 2029
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const observer = new IntersectionO
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
