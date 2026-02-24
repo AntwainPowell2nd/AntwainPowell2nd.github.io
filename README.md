@@ -1,4 +1,4 @@
-# Antwain Powell — Portfolio Website
+# Antwain Powell Jr — Portfolio Website
 
 Welcome to the source code for my personal portfolio site, built with pure HTML, CSS, and JavaScript.
 
