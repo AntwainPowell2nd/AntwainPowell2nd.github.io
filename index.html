@@ -19,6 +19,12 @@
     --text:         #e8eaff;
     --muted:        #8888bb;
     --faint:        #3a3a70;
+    --green:        #4ade80;
+    --green-dim:    rgba(74,222,128,0.12);
+    --green-border: rgba(74,222,128,0.25);
+    --amber:        #fbbf24;
+    --amber-dim:    rgba(251,191,36,0.10);
+    --amber-border: rgba(251,191,36,0.25);
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -278,6 +284,14 @@
     gap: 1.5rem;
   }
 
+  /* Featured projects row — full width spotlight cards */
+  .projects-featured {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
   .project-card {
     background: var(--card); border: 1px solid var(--border);
     border-radius: 14px; padding: 1.75rem;
@@ -295,11 +309,22 @@
   }
   .project-card:hover::after { opacity: 1; }
 
+  /* Featured card gets a subtle extra glow */
+  .project-card.featured {
+    border-color: rgba(79,142,247,0.3);
+    background: linear-gradient(145deg, #11113a 0%, #0f0f35 100%);
+  }
+  .project-card.featured:hover {
+    border-color: var(--blue);
+    box-shadow: 0 16px 48px rgba(79,142,247,0.18);
+  }
+
   .project-header {
     display: flex; justify-content: space-between; align-items: flex-start;
     margin-bottom: 0.5rem;
   }
   .project-emoji { font-size: 1.6rem; }
+
   .project-label {
     font-size: 0.68rem; font-weight: 600;
     letter-spacing: 0.1em; text-transform: uppercase;
@@ -308,20 +333,74 @@
     padding: 0.2rem 0.55rem; border-radius: 100px;
   }
 
+  /* Status badges */
+  .status-badge {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.2rem 0.6rem; border-radius: 100px;
+    margin-top: 0.6rem; margin-bottom: 0.1rem;
+  }
+  .status-badge::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%;
+  }
+  .status-badge.in-dev {
+    color: var(--amber);
+    background: var(--amber-dim);
+    border: 1px solid var(--amber-border);
+  }
+  .status-badge.in-dev::before { background: var(--amber); box-shadow: 0 0 6px var(--amber); }
+
+  .status-badge.local {
+    color: #67e8f9;
+    background: rgba(103,232,249,0.08);
+    border: 1px solid rgba(103,232,249,0.22);
+  }
+  .status-badge.local::before { background: #67e8f9; box-shadow: 0 0 6px #67e8f9; }
+
   .project-name {
     font-family: 'Playfair Display', serif;
-    font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.6rem;
+    font-size: 1.15rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem;
   }
+
+  .project-summary {
+    font-size: 0.78rem; font-weight: 600;
+    color: var(--purple-light); margin-bottom: 0.55rem;
+    letter-spacing: 0.01em;
+  }
+
   .project-desc {
     font-size: 0.82rem; color: var(--muted); line-height: 1.65;
     flex: 1; margin-bottom: 1.25rem;
   }
+
+  .project-footer {
+    display: flex; flex-wrap: wrap;
+    align-items: center; justify-content: space-between;
+    gap: 0.75rem; margin-top: auto;
+  }
+
   .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
   .project-tag {
     font-size: 0.7rem; font-weight: 500;
     padding: 0.2rem 0.55rem; border-radius: 6px;
     background: rgba(155,109,255,0.08); border: 1px solid rgba(155,109,255,0.2);
     color: var(--purple-light);
+  }
+
+  .project-link {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.75rem; font-weight: 600;
+    color: var(--blue-light); text-decoration: none;
+    border: 1px solid rgba(79,142,247,0.25); border-radius: 6px;
+    padding: 0.25rem 0.65rem;
+    transition: all 0.2s; white-space: nowrap;
+  }
+  .project-link:hover { background: rgba(79,142,247,0.1); transform: translateY(-1px); }
+
+  .project-note {
+    font-size: 0.72rem; color: var(--faint);
+    font-style: italic; margin-top: 0.4rem;
   }
 
   /* EDUCATION */
@@ -481,6 +560,7 @@
       <div class="tag-group">
         <span class="tag">Git</span>
         <span class="tag">GitHub</span>
+        <span class="tag">Supabase</span>
       </div>
     </div>
     <div class="skill-card">
@@ -548,6 +628,65 @@
     <div class="section-eyebrow">What I've Built</div>
     <h2 class="section-title">Projects</h2>
   </div>
+
+  <!-- FEATURED: SnackMap + AI Pitch Generator -->
+  <div class="projects-featured">
+
+    <!-- SnackMap -->
+    <div class="project-card featured reveal">
+      <div class="project-header">
+        <div class="project-emoji">&#127829;</div>
+        <span class="project-label">Personal Project</span>
+      </div>
+      <div class="status-badge in-dev">&#9679; In Development</div>
+      <div class="project-name">SnackMap</div>
+      <div class="project-summary">A dual-sided platform connecting snack lovers with local vendors in real time.</div>
+      <p class="project-desc">
+        SnackMap is a full-stack web application built for both consumers and small businesses. The public-facing side lets users locate nearby drinks and snacks across 10+ vendor categories with accurate, live inventory data. On the business side, vendors manage their entire product catalog through a Supabase-powered dashboard &mdash; uploading items, updating stock levels, and pushing real-time availability changes that instantly reflect for customers when items run out. Built on a scalable relational database schema engineered to support concurrent updates across multiple vendor accounts with sub-second sync.
+      </p>
+      <div class="project-footer">
+        <div class="project-tags">
+          <span class="project-tag">JavaScript</span>
+          <span class="project-tag">Supabase</span>
+          <span class="project-tag">HTML/CSS</span>
+          <span class="project-tag">API Integration</span>
+        </div>
+        <a href="https://github.com/AntwainPowell2nd/snackmap" target="_blank" class="project-link">
+          &#128279; View on GitHub
+        </a>
+      </div>
+      <p class="project-note">&#128221; Actively in development &mdash; live deployment coming soon.</p>
+    </div>
+
+    <!-- AI Pitch Generator -->
+    <div class="project-card featured reveal">
+      <div class="project-header">
+        <div class="project-emoji">&#129302;</div>
+        <span class="project-label">Hackathon &middot; Backend Lead</span>
+      </div>
+      <div class="status-badge local">&#9679; Local Build</div>
+      <div class="project-name">AI-Powered Pitch Generator</div>
+      <div class="project-summary">A Claude-powered tool that drafts, refines, and scores entrepreneurial pitches on demand.</div>
+      <p class="project-desc">
+        Built at a hackathon using the Anthropic Claude API, this tool lets users generate, expand, shorten, and evaluate startup pitches through a clean frontend interface. As Backend Lead, I engineered the full integration layer connecting my team&rsquo;s React frontend to the Claude model &mdash; designing 5 precision-crafted prompt templates that drive distinct, structured outputs: pitch expansion, concise summarization, full business plan generation, and a 5-criteria evaluation rubric grading clarity, market opportunity, feasibility, innovation, and investor appeal. Reduced average pitch drafting time by an estimated 70%.
+      </p>
+      <div class="project-footer">
+        <div class="project-tags">
+          <span class="project-tag">Claude API</span>
+          <span class="project-tag">React</span>
+          <span class="project-tag">JavaScript</span>
+          <span class="project-tag">Prompt Engineering</span>
+        </div>
+        <a href="https://github.com/donnielastrange-gif/PITCHdec" target="_blank" class="project-link">
+          &#128279; View on GitHub
+        </a>
+      </div>
+      <p class="project-note">&#128187; Runs locally &mdash; built around API key access not yet configured for public deployment.</p>
+    </div>
+
+  </div>
+
+  <!-- OTHER PROJECTS -->
   <div class="projects-grid">
 
     <div class="project-card reveal">
@@ -604,20 +743,6 @@
         <span class="project-tag">HTML</span>
         <span class="project-tag">CSS</span>
         <span class="project-tag">UI Design</span>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-header">
-        <div class="project-emoji">&#127918;</div>
-        <span class="project-label">Personal Project</span>
-      </div>
-      <div class="project-name">Calculator &amp; Rock Paper Scissors</div>
-      <p class="project-desc">Built a polished interactive calculator and a Rock Paper Scissors game, applying core programming logic and UI design principles to deliver clean, engaging browser-based experiences.</p>
-      <div class="project-tags">
-        <span class="project-tag">JavaScript</span>
-        <span class="project-tag">HTML</span>
-        <span class="project-tag">CSS</span>
       </div>
     </div>
 
